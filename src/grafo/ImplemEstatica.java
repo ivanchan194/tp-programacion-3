@@ -3,7 +3,7 @@ package grafo;
 public class ImplemEstatica implements GrafosTDA {
 	
 	int indice ;
-	int[][] matrizAdy;
+	public int[][] matrizAdy;
 	int dim ; 
 	int [] etiquetas;
 	
