@@ -1,4 +1,4 @@
-package grafo;
+package Algorithms;
 
 public class GrafoDinamic implements GrafosTDA {
 	NodoGrafo nodo;

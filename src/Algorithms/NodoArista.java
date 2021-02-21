@@ -1,6 +1,4 @@
-package grafo;
-
-import java.util.Comparator;
+package Algorithms;
 
 public class NodoArista implements Comparable<NodoArista>{
 	int peso;

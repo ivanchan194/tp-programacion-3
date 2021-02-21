@@ -1,4 +1,4 @@
-package grafo;
+package Algorithms;
 
 
 public interface GrafosTDA {

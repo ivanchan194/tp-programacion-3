@@ -1,6 +1,4 @@
-package dijkstra;
-
-import grafo.*;
+package Algorithms;
 
 public class Dijkstra {
     public static GrafosTDA dijkstra(ImplemEstatica grafo, int inicio) {
