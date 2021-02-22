@@ -51,7 +51,11 @@ public class Dijkstra {
     public static void imprimirResultado(int[] distancia) {
         System.out.println("Vertice\t\tDistancia desde origen");
         for(int i = 0; i < distancia.length; i++) {
-            System.out.println((i+1) + "\t\t\t" + distancia[i]);
+            if(distancia[i] == Integer.MAX_VALUE) {
+                System.out.println((i+1) + "\t\t\t-");
+            } else {
+                System.out.println((i+1) + "\t\t\t" + distancia[i]);
+            }
         }
     }
 
