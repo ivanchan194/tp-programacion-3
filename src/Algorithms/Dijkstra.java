@@ -1,7 +1,9 @@
 package Algorithms;
 
+import java.util.Scanner;
+
 public class Dijkstra {
-    public static GrafosTDA dijkstra(ImplemEstatica grafo, int inicio) {
+    public static int[] dijkstra(ImplemEstatica grafo, int inicio) {
         int cantVertices = grafo.vertices().length;
         int[][] matrizAdy = grafo.matrizAdy;
         int[] distancia = new int[cantVertices];
@@ -15,21 +17,22 @@ public class Dijkstra {
         distancia[inicio-1] = 0;
 
         for(int i = 0; i < cantVertices; i++) {
-            int u = minDistancia(distancia, visto, cantVertices);
+            int j = minDistancia(distancia, visto, cantVertices);
 
-            visto[u] = true;
+            visto[j] = true;
 
-            for(int j = 0; j < cantVertices; j++) {
-                int aux = matrizAdy[u][j];
-                if(!visto[j] && matrizAdy[u][j] != 0 && distancia[u] != Integer.MAX_VALUE && distancia[u] + matrizAdy[u][j] < distancia[j]) {
-                    distancia[j] = distancia[u] + matrizAdy[u][j];
+            for(int k = 0; k < cantVertices; k++) {
+                int aux = matrizAdy[j][k];
+                if(!visto[k] &&
+                        matrizAdy[j][k] != 0 &&
+                        distancia[j] != Integer.MAX_VALUE &&
+                        distancia[j] + matrizAdy[j][k] < distancia[k]) {
+                    distancia[k] = distancia[j] + matrizAdy[j][k];
                 }
             }
         }
 
-        printSolution(distancia, cantVertices);
-
-        return new GrafoDinamic();
+        return distancia;
     }
 
     static int minDistancia(int[] distancia, boolean[] visto, int cantVertices) {
@@ -45,10 +48,19 @@ public class Dijkstra {
         return minIndex;
     }
 
-    static void printSolution(int[] distancia, int cantVertices) {
-        System.out.println("Vertex \t\t Distance from Source");
-        for(int i = 0; i < cantVertices; i++) {
-            System.out.println((i+1) + " \t\t " + distancia[i]);
+    public static void imprimirResultado(int[] distancia) {
+        System.out.println("Vertice\t\tDistancia desde origen");
+        for(int i = 0; i < distancia.length; i++) {
+            System.out.println((i+1) + "\t\t\t" + distancia[i]);
+        }
+    }
+
+    public static boolean isNumeric(String str) {
+        try {
+            Integer.parseInt(str);
+            return true;
+        } catch(NumberFormatException e){
+            return false;
         }
     }
 
@@ -69,7 +81,22 @@ public class Dijkstra {
         grafo.agregarArista(4 , 1 , 8);
         grafo.agregarArista(1 , 4 , 200);
         grafo.agregarArista(5 , 4 , 24);
-        Dijkstra.dijkstra(grafo, 1);
+
+        System.out.println("Se aplicará el algoritmo de Dijkstra en el siguiente grafo:");
+        grafo.mostrarMatriz();
+
+        System.out.println("Ingrese un número del 1 al 5 para elegir el origen del grafo.");
+        Scanner sc = new Scanner(System.in);
+        String str = sc.nextLine();
+        int number = (isNumeric(str)) ? (Integer.parseInt(str)) : (-1);
+        if(number > 0 && number <= 5) {
+            System.out.println("Algoritmo de Dijkstra con origen en " + number);
+            int[] resultadoDijkstra = Dijkstra.dijkstra(grafo, number);
+            imprimirResultado(resultadoDijkstra);
+        } else {
+            System.out.println("Numbero incorrecto");
+        }
+
     }
 
 }

@@ -63,9 +63,9 @@ public class ImplemEstatica implements GrafosTDA {
 		int[] aux = new int[indice];
 		for(int i = 0; i < indice; i++) {
 			aux[i] = etiquetas[i];
-			System.out.print(aux[i] + "\t");
+			// System.out.print(aux[i] + "\t");
 		}
-		System.out.println();
+		// System.out.println();
 		return aux;
 	}
 	
